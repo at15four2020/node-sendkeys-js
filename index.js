@@ -42,7 +42,10 @@ function send(keys, metaKeys) {
   cmd(config.send(keys, metaKeys))
 }
 function activate(title) {
-  cmd(config.activate(title))
+  const result = cmd(config.activate(title))
+  const txt = new TextDecoder().decode(result)
+  const value = txt.trim().toLowerCase() === 'true'
+  return value
 }
 function run(path) {
   return cmd(config.run(path))
